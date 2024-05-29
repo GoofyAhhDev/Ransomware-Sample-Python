@@ -49,5 +49,5 @@ Important Notes:
     I have not tested this code on systems other than windows so please be careful with what you do!
     Ensure you have Python installed on your system.
     Use this tool responsibly and only on your own systems.
-    Do not use it for malicious purposes and only on systems without proper authorization.
+    Do not use it for malicious purposes and only on systems with permission from the system owner.
     Understand the potential risks associated with encrypting files and losing access to them.
