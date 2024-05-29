@@ -1,0 +1,2 @@
+cryptography==39.0.1
+six==1.16.0
